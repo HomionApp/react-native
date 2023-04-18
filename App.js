@@ -1,20 +1,20 @@
-import { Ionicons, MaterialIcons, Foundation } from "@expo/vector-icons";
+import { Foundation, Ionicons, MaterialIcons } from "@expo/vector-icons";
 import AsyncStorage from "@react-native-async-storage/async-storage";
 import { createDrawerNavigator } from "@react-navigation/drawer";
 import { NavigationContainer } from "@react-navigation/native";
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
-import AppLoading from "expo-app-loading";
 import { StatusBar } from "expo-status-bar";
 import { useContext, useEffect, useState } from "react";
 
 import { Colors } from "./constants/styles";
 import HomeScreen from "./screens/HomeScreen";
 import LoginScreen from "./screens/LoginScreen";
-import SignupScreen from "./screens/SignupScreen";
-import AuthContextProvider, { AuthContext } from "./store/auth-context";
 import Screen1 from "./screens/Screen1";
 import Screen2 from "./screens/Screen2";
 import Screen3 from "./screens/Screen3";
+import SignupScreen from "./screens/SignupScreen";
+import AuthContextProvider, { AuthContext } from "./store/auth-context";
+import LoadingOverlay from "./components/ui/LoadingOverlay";
 
 const Stack = createNativeStackNavigator();
 
@@ -170,7 +170,7 @@ function Root() {
   }, []);
 
   if (isTryingLogin) {
-    return <AppLoading />;
+    return <LoadingOverlay message="Loading ..." />;
   }
 
   return <Navigation />;
